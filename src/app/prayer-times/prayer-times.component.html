@@ -1,0 +1,94 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">Prayer Times in Egypt</h1>
+      <div class="mb-3">
+        <label for="selectedDay" class="form-label">Select Day</label>
+        <select class="form-control" id="selectedDay" [(ngModel)]="chosenDay" name="selectedDay">
+          <ng-container *ngFor="let day of nextDays.keys()">
+            <option [value]="day">{{ day }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <form>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <select class="form-control" id="city" [(ngModel)]="city" name="city">
+            <option value="Cairo">Cairo</option>
+            <option value="Alexandria">Alexandria</option>
+            <option value="Giza">Giza</option>
+            <option value="Shubra El Kheima">Shubra El Kheima</option>
+            <option value="Port Said">Port Said</option>
+            <option value="Suez">Suez</option>
+            <option value="Luxor">Luxor</option>
+            <option value="Aswan">Aswan</option>
+            <option value="Tanta">Tanta</option>
+            <option value="Mansoura">Mansoura</option>
+            <option value="Zagazig">Zagazig</option>
+            <option value="Faiyum">Faiyum</option>
+            <option value="Ismailia">Ismailia</option>
+            <option value="Minya">Minya</option>
+            <option value="Banha">Banha</option>
+            <option value="Sohag">Sohag</option>
+            <option value="Hurghada">Hurghada</option>
+            <option value="Qena">Qena</option>
+            <option value="Beni Suef">Beni Suef</option>
+            <option value="Asyut">Asyut</option>
+            <option value="Damietta">Damietta</option>
+            <option value="Kafr El Sheikh">Kafr El Sheikh</option>
+            <option value="Damanhur">Damanhur</option>
+            <option value="El Mahalla El Kubra">El Mahalla El Kubra</option>
+            <option value="Port Said">Port Said</option>
+            <option value="Luxor">Luxor</option>
+            <option value="Shibin El Kom">Shibin El Kom</option>
+          </select>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="getPrayerTimes()">Get Prayer Times</button>
+        </div>
+      </form>
+      <div class="mt-4">
+        <h2 class="text-center">Prayer Times for {{ city }}, Egypt</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Fajr</th>
+              <th>Sunrise</th>
+              <th>Dhuhr</th>
+              <th>Asr</th>
+              <th>Sunset</th>
+              <th>Maghrib</th>
+              <th>Isha</th>
+              <th>Imsak</th>
+              <th>Midnight</th>
+              <th>First Third</th>
+              <th>Last Third</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prayerTime of prayerTimes">
+              <ng-container *ngIf="shouldDisplayDay(prayerTime.date.readable)">
+                <td>{{ getDayDisplay(prayerTime.date.readable) }}</td>
+                <td>{{ prayerTime.timings.Fajr }}</td>
+                <td>{{ prayerTime.timings.Sunrise }}</td>
+                <td>{{ prayerTime.timings.Dhuhr }}</td>
+                <td>{{ prayerTime.timings.Asr }}</td>
+                <td>{{ prayerTime.timings.Sunset }}</td>
+                <td>{{ prayerTime.timings.Maghrib }}</td>
+                <td>{{ prayerTime.timings.Isha }}</td>
+                <td>{{ prayerTime.timings.Imsak }}</td>
+                <td>{{ prayerTime.timings.Midnight }}</td>
+                <td>{{ prayerTime.timings.Firstthird }}</td>
+                <td>{{ prayerTime.timings.Lastthird }}</td>
+              </ng-container>
+            </tr>
+          </tbody>          
+        </table>
+        <ng-template #loadingTemplate>
+          <div class="text-center">Loading...</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
