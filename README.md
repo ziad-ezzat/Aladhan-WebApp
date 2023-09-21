@@ -85,7 +85,7 @@ ng serve
 
 ## Credits
 
-- This app uses prayer time data provided by [API Name] (insert API link).
+- This app uses prayer time data provided by [aladhan] (https://api.aladhan.com/v1/calendarByCity/2023/9?city=&country=Egypt&method=1).
 
 ## Contributing
 
